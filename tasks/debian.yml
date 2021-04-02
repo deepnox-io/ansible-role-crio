@@ -1,0 +1,29 @@
+---
+
+# https://insujang.github.io/2019-11-21/installing-kubernetes-and-crio-in-debian/
+
+- name: modprobe overlay
+  modprobe:
+    name: overlay
+    state: present
+
+- name: modprobe br_netfilter
+  modprobe:
+    name: br_netfilter
+    state: present
+
+- name: Add specified repository into sources list
+  ansible.builtin.apt_repository:
+    repo: deb http://ppa.launchpad.net/projectatomic/ppa/ubuntu bionic main
+    state: present
+
+- name: Add specified repository into sources list
+  ansible.builtin.apt_repository:
+    repo: deb-src http://ppa.launchpad.net/projectatomic/ppa/ubuntu bionic main
+    state: present
+
+- name: install Cri-O
+  apt:
+    name: nginx
+    state: present
+    update_cache: true
