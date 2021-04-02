@@ -6,11 +6,13 @@ driver:
 platforms:
   - name: instance
     image: debian:buster-slim
+    privileged: true
     pre_build_image: true
+    required: true
 provisioner:
   name: ansible
 verifier:
-  name: ansible
+  name: testinfra
 lint: |
   set -e
   yamllint .
